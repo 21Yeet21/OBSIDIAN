@@ -1,0 +1,286 @@
+{
+  "main": {
+    "id": "6e96d61a1ca4dc1c",
+    "type": "split",
+    "children": [
+      {
+        "id": "90b73427f2920ef1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4d212ad5ca59127b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Services.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Services"
+            }
+          },
+          {
+            "id": "7abcd93adf08e3a9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TOOLS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "TOOLS"
+            }
+          },
+          {
+            "id": "75a06431da90ed47",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Links/teeeeeeeeeeeeest.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "teeeeeeeeeeeeest"
+            }
+          },
+          {
+            "id": "2ab415c02b5ecd26",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Links/Untitled.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Untitled"
+            }
+          },
+          {
+            "id": "0b44f1e3c8b3f29a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "flsdjfsf.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "flsdjfsf"
+            }
+          },
+          {
+            "id": "905b4cc2a48808ae",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "fsldfjsfq.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "fsldfjsfq"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "09c4374759cb6122",
+    "type": "split",
+    "children": [
+      {
+        "id": "e44ddf528db5a21e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5034fa7aef7a0285",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "ff076aabb6371d78",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "031c115d435985e6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "4a59ab1bdb697c0a",
+    "type": "split",
+    "children": [
+      {
+        "id": "c82086b9be97b28d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "121de428e80829ea",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Ctfs/Knowledge/TryHackMe/Free Roadmap/Network Services IMPOR.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Network Services IMPOR"
+            }
+          },
+          {
+            "id": "214f262a6fc01e3f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Ctfs/Knowledge/TryHackMe/Free Roadmap/Network Services IMPOR.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Network Services IMPOR"
+            }
+          },
+          {
+            "id": "bb0dfe3d4e1a9197",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "023429d0497c3fa3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Ctfs/Knowledge/TryHackMe/Free Roadmap/Network Services IMPOR.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Network Services IMPOR"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "905b4cc2a48808ae",
+  "lastOpenFiles": [
+    "flsdjfsf.md",
+    "fsldfjsfq.md",
+    "Links/Untitled.md",
+    "Dealing with Github.md",
+    "Links/teeeeeeeeeeeeest.md",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Network Services 2.md",
+    "AI Prompts.md",
+    "Services.md",
+    "TOOLS.md",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Governance & Regulation ==Boxes Included==.md",
+    "Links/Free Roadmap.md",
+    "Links/TryHackMe.md",
+    "Links/Knowledge.md",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Network Services IMPOR.md",
+    "Pics/Pasted image 20250107230536.png",
+    "Pics/Pasted image 20250107223636.png",
+    "Pics/Pasted image 20250107223617.png",
+    "Pics/Pasted image 20250107221525.png",
+    "Pics/Pasted image 20250107221505.png",
+    "Pics/Pasted image 20250107221447.png",
+    "Pics/Pasted image 20250107220259.png",
+    "Pics/Pasted image 20250107211208.png",
+    "Untitled",
+    "Pics/Pasted image 20250107204913.png",
+    "Pics/Pasted image 20250107204606.png",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Blue Teaming.md",
+    "Prom",
+    "Ctfs/New Finds.md",
+    "Linux/This is how i downloaded insync on Kali.md",
+    "Linux/Linux Conf.md",
+    "$Temp/Trash",
+    "$Temp",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Common Attacks ==Boxes Included==.md",
+    "Network services IMPOR",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Cyber Kill Chain.md",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Security Principles.md",
+    "Ctfs/Knowledge/Cybrary/Cybrary course.md",
+    "Links/Ctfs.md",
+    "Links/Cybrary.md",
+    "GDPR, HIPAA, PCI DSS.md",
+    "Links/GDPR, HIPAA, PCI DSS.md",
+    "TryhackMe",
+    "Untitled.canvas",
+    "Knowledge",
+    "Links",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap",
+    "Ctfs/Knowledge/Cybrary"
+  ]
+}
