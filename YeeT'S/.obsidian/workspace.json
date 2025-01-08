@@ -1,0 +1,226 @@
+{
+  "main": {
+    "id": "6e96d61a1ca4dc1c",
+    "type": "split",
+    "children": [
+      {
+        "id": "90b73427f2920ef1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fffde9d5c62f673e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ctfs/Knowledge/TryHackMe/Free Roadmap/Blue Teaming.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Blue Teaming"
+            }
+          },
+          {
+            "id": "ad69d0508abf0114",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ctfs/Knowledge/TryHackMe/Free Roadmap/Network Services IMPOR.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Network Services IMPOR"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "09c4374759cb6122",
+    "type": "split",
+    "children": [
+      {
+        "id": "e44ddf528db5a21e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5034fa7aef7a0285",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "ff076aabb6371d78",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "031c115d435985e6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "4a59ab1bdb697c0a",
+    "type": "split",
+    "children": [
+      {
+        "id": "c82086b9be97b28d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "121de428e80829ea",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Ctfs/Knowledge/TryHackMe/Free Roadmap/Network Services IMPOR.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Network Services IMPOR"
+            }
+          },
+          {
+            "id": "214f262a6fc01e3f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Ctfs/Knowledge/TryHackMe/Free Roadmap/Network Services IMPOR.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Network Services IMPOR"
+            }
+          },
+          {
+            "id": "bb0dfe3d4e1a9197",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "023429d0497c3fa3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Ctfs/Knowledge/TryHackMe/Free Roadmap/Network Services IMPOR.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Network Services IMPOR"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "ad69d0508abf0114",
+  "lastOpenFiles": [
+    "Ctfs/New Finds.md",
+    "Linux/This is how i downloaded insync on Kali.md",
+    "Pics/Pasted image 20250106103737.png",
+    "Pics/Pasted image 20250106103555.png",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Blue Teaming.md",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Network Services IMPOR.md",
+    "Linux/Linux Conf.md",
+    "Links/Free Roadmap.md",
+    "Links/TryHackMe.md",
+    "Pics/Pasted image 20250106161316.png",
+    "Pics/Pasted image 20250106161251.png",
+    "Pics/Pasted image 20250106161232.png",
+    "Pics/Pasted image 20250106161209.png",
+    "Pics/Pasted image 20250106161124.png",
+    "$Temp/Trash",
+    "$Temp",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Common Attacks ==Boxes Included==.md",
+    "Network services IMPOR",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Governance & Regulation ==Boxes Included==.md",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Cyber Kill Chain.md",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Security Principles.md",
+    "Pics/Pasted image 20250103192945.png",
+    "Pics/Pasted image 20250103191449.png",
+    "Pics/Pasted image 20250103191416.png",
+    "Ctfs/Knowledge/Cybrary/Cybrary course.md",
+    "Links/Ctfs.md",
+    "Links/Knowledge.md",
+    "Links/Cybrary.md",
+    "GDPR, HIPAA, PCI DSS.md",
+    "Links/GDPR, HIPAA, PCI DSS.md",
+    "TryhackMe",
+    "Welcome.md",
+    "Untitled.canvas",
+    "Knowledge",
+    "Ctfs/Knowledge/Cybrary/Untitled.md",
+    "Links",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap/Cyber careers.md",
+    "Ctfs/Knowledge/TryHackMe/Free Roadmap",
+    "Ctfs/Knowledge/Cybrary",
+    "Ctfs/Knowledge/TryHackMe",
+    "Pics",
+    "2024-12-22.md",
+    "Study/Trame.md"
+  ]
+}
