@@ -64,3 +64,85 @@ NFS (==Network File System==) allows systems to share directories and files over
 
 `4.2`
 
+
+### NFS-Common Installation and Setup
+
+#### **NFS-Common Package Overview**
+
+To interact with NFS shares, you need to install the **nfs-common** package. It includes tools for mounting and interacting with NFS shares, such as:
+
+- **showmount**: to list available shares on the server.
+- **mount.nfs**: to mount the NFS share to your local system.
+
+Install it with:
+
+```bash
+sudo apt install nfs-common
+```
+
+#### **Mounting NFS Shares**
+
+1. **Create a Mount Point**: You first need to create a directory where you will mount the NFS share.
+    
+    ```bash
+    sudo mkdir /tmp/mount
+    ```
+    
+2. **Mount the NFS Share**: Use the `mount` command to mount the NFS share.
+    
+    ```bash
+    sudo mount -t nfs <IP_ADDRESS>:<share_name> /tmp/mount/ -nolock
+    ```
+    
+    - Replace `<IP_ADDRESS>` with the IP address of the NFS server.
+    - Replace `<share_name>` with the specific NFS share.
+
+#### **Explanation of Command**
+
+- **sudo**: Run with superuser privileges.
+- **mount**: Mount command to attach the NFS share to your system.
+- **-t nfs**: Specifies the type of filesystem to mount (NFS).
+- **IP:share**: The NFS server's IP and the share you want to mount.
+- **-nolock**: Prevents the use of NLM (Network Lock Manager) locking.
+
+This will allow you to interact with the NFS server's shared resources.
+
+
+
+####  Enumuration 
+
+Based on the Nmap scan output, the NFS service is running on port 2049 (`nfs 3-4 (RPC #100003)`), but to list the available NFS shares, you need to use the `showmount` command.
+
+To find the visible share, run the following command:
+
+```bash
+sudo /usr/sbin/showmount -e 10.10.150.50
+```
+
+This will display the list of NFS shares available on the server at IP `10.10.150.50`. The name of the visible share will be listed under the "Export list" section.
+
+
+
+The error message `mount.nfs: mount point /tmp/mount/ does not exist` indicates that the directory `/tmp/mount/` does not exist on your system. You need to create the directory before attempting to mount the NFS share.
+
+### Solution:
+
+1. **Create the mount point directory**: Run the following command to create the `/tmp/mount/` directory:
+    
+    ```bash
+    sudo mkdir -p /tmp/mount
+    ```
+    
+2. **Mount the NFS share again**: Now, try mounting the NFS share again:
+    
+    ```bash
+    sudo mount -t nfs IP:Share /tmp/mount/ -nolock
+    ```
+    
+			└─$ sudo mount -t nfs 10.10.150.50:/home /tmp/mount/ -nolock
+
+> after coppying the shares to /tmp/mount cd'd  and looked for importan
+> 
+> found ssh files they have keys so i logged in via ssh
+
+
