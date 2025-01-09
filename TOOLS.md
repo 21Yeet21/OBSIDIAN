@@ -117,6 +117,34 @@ Great! Now that's running, we need to copy and paste our msfvenom payload into t
 hydra -t 4 -l [username] -P [path to wordlist] -vV [target IP] ftp
 ```
 
+### **Table: Fragile vs. Robust Protocols**
+
+|**Category**|**Protocol**|**Explanation**|
+|---|---|---|
+|**Fragile Protocols**|||
+||**SMTP**|Often rate-limited to prevent abuse; many servers lock accounts after a few failed attempts.|
+||**FTP**|Older implementations are sensitive to high connection rates, leading to crashes or timeouts.|
+||**HTTP/HTTPS (Web Forms)**|Web servers may implement CAPTCHA, rate-limiting, or block IPs after too many failed attempts.|
+||**IMAP/POP3**|Email protocols often have strict security measures and lower tolerance for repeated failures.|
+||**Telnet**|Legacy protocol with limited security; excessive requests may crash the service.|
+||**RDP (Remote Desktop)**|May block IPs or lock accounts quickly after multiple failed logins.|
+||**SNMP**|Not designed for authentication; high parallel connections can lead to service disruption.|
+|**Robust Protocols**|||
+||**SSH**|Designed to handle multiple connections; higher tolerance to brute-force attempts.|
+||**SMB**|Resilient to high connection rates, especially on modern implementations.|
+||**Kerberos**|Built for secure authentication, often used in enterprise networks, withstanding parallel brute-forcing.|
+||**DNS**|Can handle many requests simultaneously, although brute-forcing subdomains may still be detected.|
+||**LDAP**|Generally robust and scalable for high connection attempts, especially on enterprise systems.|
+
+---
+
+### **Key Notes:**
+
+- **Fragile Protocols**: These are more likely to crash, lock accounts, or trigger defenses (CAPTCHA, IP bans) during brute-forcing attempts. Use **low thread counts** (e.g., `-t 4` or `-t 8`) for these.
+- **Robust Protocols**: These can handle more concurrent connections and higher thread counts (e.g., `-t 16` or `-t 32`) without significant risk of service disruption.
+
+This distinction isn’t absolute—always monitor the target’s behavior and adjust the thread count as needed.
+
 ###### **Breaking Down the Command**:
 
 | **Section**             | **Function**                                                                      |
@@ -130,6 +158,11 @@ hydra -t 4 -l [username] -P [path to wordlist] -vV [target IP] ftp
 | `ftp`                   | Specifies the **FTP protocol** for Hydra to attack                                |
 
 ---
+
+### **Key Notes:**
+
+- **Fragile Protocols**: These are more likely to crash, lock accounts, or trigger defenses (CAPTCHA, IP bans) during brute-forcing attempts. Use **low thread counts** (e.g., `-t 4` or `-t 8`) for these.
+- **Robust Protocols**: These can handle more concurrent connections and higher thread counts (e.g., `-t 16` or `-t 32`) without significant risk of service disruption.
 
 ###### **Example Command**:
 
