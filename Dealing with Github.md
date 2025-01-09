@@ -1,7 +1,10 @@
 
 ### run the script manually
+cd to the script folder wich is ==documents== then run it
+./sync_git.sh  
+this will update the repo
 
-./home/lableb/Documents/sync_git.sh
+
 
 ### Summary: Setting Up Git Synchronization Script
 

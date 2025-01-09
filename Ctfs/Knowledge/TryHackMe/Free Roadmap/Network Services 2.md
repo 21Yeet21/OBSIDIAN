@@ -290,3 +290,87 @@ THM{nfs_got_pwned}
 ###### Conclusion
 
 Congratulations, you've successfully used the NFS share and SUID bit to escalate privileges and obtain the root flag!
+
+
+
+
+
+## SMTP
+
+### Understanding SMTP
+
+
+
+**What is SMTP?**  
+SMTP stands for =="Simple Mail Transfer Protocol"==.is a protocol used to send emails. It works alongside POP or IMAP, which handle incoming email retrieval, to enable complete email communication.
+
+**Key Functions of SMTP Servers:**
+
+1. Verify the sender's identity.
+2. Send outgoing emails.
+3. Notify the sender if the email can't be delivered.
+
+**How SMTP Works:**
+
+![[Pasted image 20250109151427.png]]
+
+
+- The sender's email client connects to the SMTP server over port ==25 (or alternatives like 587/465).==
+- The email details (sender, recipient, body, and attachments) are submitted.
+- The sender's SMTP server communicates with the recipient's SMTP server to relay the email.
+- If successful, the recipient's SMTP server forwards the email to their POP/IMAP server, making it accessible in their inbox.
+
+**Protocols Complementing SMTP:**
+
+- **POP (Post Office Protocol):** Downloads emails to the client.
+- **IMAP (Internet Message Access Protocol):** Synchronizes emails between the client and the server.
+
+**Use in Security and Testing:**  
+SMTP services are often targeted in penetration testing and reconnaissance for misconfigurations or vulnerabilities. Tools like `Telnet` and `Nmap` can enumerate SMTP servers and test for relay settings or banner grabbing.
+
+For more detailed technical insights, refer to [HowStuffWorks](https://computer.howstuffworks.com/e-mail-messaging/email3.htm).
+
+---
+
+#### Q&A
+
+`What is the first step in the SMTP process?`
+
+`SMTP handshake`
+
+
+`What is the default SMTP port?`
+
+`25`
+
+`Where does the SMTP server send the email if the recipient's server is not available?`
+
+`smtp queue`
+
+
+`On what server does the Email ultimately end up on?`
+
+`POP/IMAP`
+
+
+### Enumerating SMTP
+
+### Summary: Enumerating and Exploiting SMTP
+
+**1. Server Fingerprinting**  
+Use Metasploit's **"smtp_version"** module to scan IP ranges and determine the mail server version for precise targeting.
+
+**2. User Enumeration**  
+SMTP commands like `VRFY` and `EXPN` can be used to confirm valid users and reveal aliases or mailing lists.
+
+- Metasploit's **"smtp_enum"** module automates this process with a wordlist.
+- Alternatively, tools like **smtp-user-enum** can achieve similar results manually or with other scripts.
+
+**3. Requirements**  
+Ensure Metasploit is installed and updated (`sudo apt update && sudo apt upgrade`). For alternatives, use tools like **smtp-user-enum** to perform manual enumeration when avoiding Metasploit.
+
+**==4. OSCPConsiderations==**  
+For OSCP preparation, using tools like **smtp-user-enum** can be a good practice to avoid relying on Metasploit, which might be discouraged in some testing environments.
+
+This approach is particularly effective against poorly configured mail servers and aids in gaining an initial foothold during penetration testing.
+

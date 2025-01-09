@@ -70,5 +70,14 @@
       ],
       "key": "5"
     }
+  ],
+  "editor:insert-codeblock": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "C"
+    }
   ]
 }
