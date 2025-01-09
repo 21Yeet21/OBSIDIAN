@@ -80,3 +80,24 @@ With this, we can try to brute-force the FTP password using tools like **Hydra*
 
 
 
+
+## NFS 
+
+### NFS (Network File System) Summary
+
+**What is NFS?**  
+NFS is a protocol that allows file systems on a network to be shared between machines. It enables a client to access files on a remote server as if they were local files.
+
+**How to Enumerate NFS?**
+
+1. **Scan for NFS service**: Use Nmap to scan for open ports (e.g., `2049` for NFS).
+2. **List NFS shares**: Use `showmount -e [IP]` to list available NFS shares on the target server.
+3. **Check NFS exports**: Inspect `/etc/exports` to see which directories are shared and any special configurations like `root_squash`.
+
+**Exploitation**
+
+1. **Gain access**: Mount NFS shares on the client system.
+2. **Set SUID on files**: If `root_squash` is disabled, upload a bash executable, set the SUID bit, and change the file owner to `root`.
+3. **Escalate Privileges**: Run the SUID-enabled file to escalate privileges and gain a root shell.
+
+NFS misconfigurations can be exploited to escalate privileges, especially if `root_squash` is not enabled.

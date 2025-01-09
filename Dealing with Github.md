@@ -1,3 +1,8 @@
+
+### run the script manually
+
+./home/lableb/Documents/sync_git.sh
+
 ### Summary: Setting Up Git Synchronization Script
 
 Here's a step-by-step guide on how to set up the script to sync a folder with your Git repository, and ensure everything works correctly.
