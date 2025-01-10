@@ -751,3 +751,17 @@ Now, use Metasploit or alternative tools to start enumerating MySQL. Ensure you 
 ---
 
 This summary provides a clear path of commands and results for exploiting MySQL. Let me know if you need further details!
+
+# Further Learning
+
+**Reading**
+
+Here's some things that might be useful to read after completing this room, if it interests you:
+
+-  [https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/4/html/security_guide/ch-exploits](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/4/html/security_guide/ch-exploits)
+-  [https://www.nextgov.com/cybersecurity/2019/10/nsa-warns-vulnerabilities-multiple-vpn-services/160456/](https://www.nextgov.com/cybersecurity/2019/10/nsa-warns-vulnerabilities-multiple-vpn-services/160456/)  
+    
+
+**Thank you**  
+
+Thanks for taking the time to work through this room, I wish you the best of luck in future.
