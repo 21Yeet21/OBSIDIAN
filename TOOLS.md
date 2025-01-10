@@ -175,6 +175,8 @@ This command will attempt to crack the FTP password for the user **dale** on the
 
 ## MetaSploit
 
+Metasploit tip: View missing module options with show missing
+
 
 
 
@@ -455,5 +457,120 @@ Apologies for missing some parts in the previous response. Let me provide a more
 
 ---
 
-This should now provide a complete picture of the Metasploit process from selecting a module to managing sessions and using auxiliary tools for scanning. Would you like further details or specific examples on any of these topics?
+
+
+
+## John the ripper
+ 
+
+### 1. Installation
+First, you need to install John the Ripper. The installation process depends on your operating system.
+
+#### On Linux:
+You can install John the Ripper using the package manager. For example, on Debian-based systems like Ubuntu, you can use:
+```sh
+sudo apt-get update
+sudo apt-get install john
+```
+
+### 2. Basic Usage
+Once installed, you can use John the Ripper to crack passwords. Here are some basic commands:
+
+#### Cracking a Single Hash:
+To crack a single hash, you can use the following command:
+```sh
+john --format=<hash_type> <hash_file>
+```
+Replace `<hash_type>` with the type of hash you're dealing with (e.g., `raw-md5`, `sha256crypt`, etc.) and `<hash_file>` with the file containing the hash.
+
+#### Example:
+```sh
+john --format=raw-md5 hash.txt
+```
+
+#### Cracking Multiple Hashes:
+If you have multiple hashes in a file, you can use:
+```sh
+john --format=<hash_type> <hash_file>
+```
+
+#### Example:
+```sh
+john --format=raw-md5 hashes.txt
+```
+
+### 3. Using Wordlists
+John the Ripper can use wordlists to attempt common passwords. You can specify a wordlist with the `--wordlist` option:
+```sh
+john --wordlist=<wordlist_file> <hash_file>
+```
+
+#### Example:
+```sh
+john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt
+```
+
+### 4. Running John the Ripper in the Background
+If you want to run John the Ripper in the background and check the progress later, you can use:
+```sh
+john --background <hash_file>
+```
+
+To check the status later, use:
+```sh
+john --status
+```
+
+### 5. Saving and Loading Sessions
+You can save the current session and load it later:
+```sh
+john --save
+john --load
+```
+
+### 6. Custom Rules
+John the Ripper supports custom rules for password cracking. You can create your own rule set and apply it using the `--rules` option:
+```sh
+john --rules --format=<hash_type> <hash_file>
+```
+
+### 7. Stopping John the Ripper
+To stop John the Ripper, you can use:
+```sh
+john --stop
+```
+
+### 8. Viewing Cracked Passwords
+After running John the Ripper, you can view the cracked passwords using:
+```sh
+john --show <hash_file>
+```
+
+#### Example:
+```sh
+john --show hashes.txt
+```
+
+### Example Scenario
+Let's say you have a file `hashes.txt` containing the following MD5 hashes:
+```
+5f4dcc3b5aa765d61d8327deb882cf99
+e38ad214943daad1d64c102faec29de4
+```
+
+You can run John the Ripper to crack these hashes using a wordlist:
+```sh
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=raw-md5 hashes.txt
+```
+
+After running, you can check the status and view the cracked passwords:
+```sh
+john --status
+john --show hashes.txt
+```
+
+That's a basic overview of how to use John the Ripper. If you have any specific questions or need more advanced usage examples, feel free to ask!
+
+
+
 

