@@ -15,6 +15,13 @@
         "Mod"
       ],
       "key": "J"
+    },
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "J"
     }
   ],
   "editor:toggle-highlight": [
@@ -22,6 +29,13 @@
       "modifiers": [
         "Alt",
         "Mod"
+      ],
+      "key": "H"
+    },
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
       ],
       "key": "H"
     }
@@ -33,6 +47,13 @@
         "Mod"
       ],
       "key": "1"
+    },
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "1"
     }
   ],
   "editor:set-heading-2": [
@@ -40,6 +61,13 @@
       "modifiers": [
         "Alt",
         "Mod"
+      ],
+      "key": "2"
+    },
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
       ],
       "key": "2"
     }
@@ -51,6 +79,13 @@
         "Mod"
       ],
       "key": "3"
+    },
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "3"
     }
   ],
   "editor:set-heading-4": [
@@ -58,6 +93,13 @@
       "modifiers": [
         "Alt",
         "Mod"
+      ],
+      "key": "4"
+    },
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
       ],
       "key": "4"
     }
@@ -69,6 +111,13 @@
         "Mod"
       ],
       "key": "5"
+    },
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "5"
     }
   ],
   "editor:insert-codeblock": [
@@ -76,6 +125,13 @@
       "modifiers": [
         "Alt",
         "Mod"
+      ],
+      "key": "C"
+    },
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
       ],
       "key": "C"
     }

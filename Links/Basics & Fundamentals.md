@@ -3,4 +3,5 @@
 
 [[Cyber Kill Chain]] [[Common Attacks ==Boxes Included==]] [[Network Services IMPOR]]
 
-[[Network Services 2]]
+[[Network Services 2]] [[HTTP In Detail]] [[DNS in Detail]]
+

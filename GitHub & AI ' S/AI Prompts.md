@@ -6,6 +6,8 @@ now do a little summery on what is nfs how can we enumerate it and exploit it im
 
 
 
+
+
 now i will pause this summerie and start a metasploit summery give me a command that ill prompt to u in order to get back doing this summery and u can inderstand it
 
 
