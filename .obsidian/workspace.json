@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "90b73427f2920ef1",
+        "id": "cf5c0173059b63e8",
         "type": "tabs",
         "children": [
           {
-            "id": "170393f558cceb38",
+            "id": "a179ade39d43192a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GitHub & AI ' S/Update Repo.md",
+                "file": "GitHub & AI ' S/Dealing with Github.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Update Repo"
+              "title": "Dealing with Github"
             }
           }
         ]
@@ -33,7 +33,7 @@
       {
         "id": "b0ff3705076f532f",
         "type": "tabs",
-        "dimension": 81.94945848375451,
+        "dimension": 78.04610318331504,
         "children": [
           {
             "id": "5034fa7aef7a0285",
@@ -41,7 +41,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "byModifiedTimeReverse"
+                "sortOrder": "byModifiedTimeReverse",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -52,7 +53,7 @@
       {
         "id": "e44ddf528db5a21e",
         "type": "tabs",
-        "dimension": 18.050541516245488,
+        "dimension": 21.953896816684964,
         "children": [
           {
             "id": "ff076aabb6371d78",
@@ -85,7 +86,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 250.51103591918945
   },
   "right": {
     "id": "4a59ab1bdb697c0a",
@@ -170,54 +171,54 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "170393f558cceb38",
+  "active": "a179ade39d43192a",
   "lastOpenFiles": [
     "GitHub & AI ' S/Dealing with Github.md",
-    "Ctfs/Knowledge/TryHackMe/Basics + Fundamentlal/Linux Modules.md",
+    "TOOLS & SERVICES/TOOLS.md",
+    "Studying Cyber/Knowledge/TryHackMe/Basics/Hacker Methodology.md",
     "GitHub & AI ' S/AI Prompts.md",
-    "Pics/Pasted image 20250118144400.png",
-    "Ctfs/Knowledge/TryHackMe/Basics + Fundamentlal/Regular Expressions (Regex).md",
-    "Pics/Pasted image 20250116235240.png",
-    "Ctfs/Knowledge/TryHackMe/Basics + Fundamentlal/Introductory Researching (search).md",
     "Linux Trouble Shooting/Linux Conf.md",
-    "Linux Trouble Shooting/shortcuts in linnux.md",
+    "Studying Cyber/Knowledge/TryHackMe/Basics + Fundamentlal/Network Services IMPOR.md",
+    "Studying Cyber/Knowledge/TryHackMe/Basics + Fundamentlal/Security Principles.md",
+    "Studying Cyber/Knowledge/TryHackMe/Basics + Fundamentlal/Governance & Regulation ==Boxes Included==.md",
+    "Studying Cyber/Knowledge/TryHackMe/Basics + Fundamentlal/Cyber careers.md",
+    "Studying Cyber/Knowledge/TryHackMe/Basics + Fundamentlal/Cyber Kill Chain.md",
+    "Studying Cyber/Knowledge/TryHackMe/Basics + Fundamentlal/Common Attacks ==Boxes Included==.md",
+    "Linux Trouble Shooting/Linux networking.md",
+    "Studying Cyber/Knowledge/TryHackMe/Windows Fundamentals (imortant blogs).md",
+    "Pics/Pasted image 20250120232957.png",
+    "Pics/Pasted image 20250120225516.png",
+    "Study/Pfsense.md",
+    "TOOLS & SERVICES/Enum.md",
+    "TOOLS & SERVICES/SSH.md",
+    "TOOLS & SERVICES/Nmap.md",
+    "Pics/Pasted image 20250120011210.png",
+    "TOOLS & SERVICES/Brute Forcing.md",
+    "TOOLS & SERVICES/Recon.md",
+    "TOOLS & SERVICES/Services.md",
+    "Studying Cyber/New Finds.md",
+    "key seaarch.md",
+    "Studying Cyber/Knowledge/TryHackMe/Basics",
+    "Ctfs/Knowledge/TryHackMe/Untitled",
     "Linux Trouble Shooting/Adding touchpad clicks to light dm View part 2.md",
+    "Linux Trouble Shooting/shortcuts in linnux.md",
     "Linux Trouble Shooting/This is how i downloaded insync on Kali.md",
-    "Links/Penetration testing.md",
-    "Links/Basics & Fundamentals.md",
-    "Ctfs/Knowledge/TryHackMe/Pentesting/Passive Recon.md",
-    "Ctfs/Knowledge/TryHackMe/Pentesting/Active Recon.md",
+    "Studying Cyber/Knowledge/TryHackMe/Basics + Fundamentlal/Linux Modules.md",
+    "Pics/Pasted image 20250118144400.png",
+    "Pics/Pasted image 20250116235240.png",
     "Pics/Pasted image 20250114114236.png",
     "Pics/Pasted image 20250114111837.png",
-    "GitHub & AI ' S/Update Repo.md",
-    "Ctfs/Knowledge/TryHackMe/Pentesting/Red Team Engagements.md",
     "Pics/Pasted image 20250113214207.png",
     "Pics/Pasted image 20250113214130.png",
     "Pics/Pasted image 20250113213234.png",
-    "Ctfs/Knowledge/TryHackMe/Basics + Fundamentlal/How Websites Work**.md",
-    "Ctfs/Knowledge/TryHackMe/Basics + Fundamentlal/Putting it All together.md",
-    "Ctfs/Knowledge/TryHackMe/Basics + Fundamentlal/Network Services 2.md",
-    "Ctfs/Knowledge/TryHackMe/Pentesting/Red Team Fundamentals.md",
-    "Pics/Pasted image 20250113160332.png",
-    "Pics/Pasted image 20250113155621.png",
-    "Ctfs/Knowledge/TryHackMe/Pentesting/Pentesting Fundamentals.md",
-    "Ctfs/New Finds.md",
-    "Links/TryHackMe.md",
-    "Ctfs/Knowledge/TryHackMe/Pentesting",
-    "Pics/Pasted image 20250112230448.png",
-    "Knowldge/Why VPN when using THM.md",
-    "Ctfs/Knowledge/TryHackMe/Basics + Fundamentlal/DNS in Detail.md",
+    "Studying Cyber/Knowledge/TryHackMe/Pentesting",
     "Knowldge",
     "pics",
     "Untitled 1",
     "TOOLS & SERVICES",
-    "Ctfs/Knowledge/TryHackMe/Basics + Fundamentlal/HTTP In Detail.md",
-    "Ctfs/Knowledge/TryHackMe/Basics + Fundamentlal/Network Services IMPOR.md",
     "GitHub & AI ' S",
     "Prom",
     "$Temp/Trash",
-    "$Temp",
-    "Network services IMPOR",
     "Untitled.canvas"
   ]
 }

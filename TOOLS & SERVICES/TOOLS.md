@@ -1,76 +1,31 @@
+`find / -perm -4000 -type f 2>/dev/null`: To locate files with SUID permissions, which may allow privilege escalation.
 
-### Enum4Linux Summary
+## General Tools
 
-- **Purpose**: Enumerates SMB shares on Windows/Linux systems.
-- **Function**: Wrapper for Samba tools to extract SMB information easily.
-- **Availability**: Pre-installed on AttackBox; installable from GitHub.
-
-###### Syntax:
-
-```bash
-enum4linux [options] ip
-```
-
-###### Common Tags and Functions:
-
-- **-U**: Get user list
-- **-M**: Get machine list
-- **-N**: Get namelist dump (different from -U and -M)
-- **-S**: Get share list
-- **-P**: Get password policy info
-- **-G**: Get group and member list
-- **-a**: Full enumeration (all options above)
+- **Nmap**:
+    - Scans the target to determine:
+        - Open ports.
+        - Operating system and its version.
+        - Running services and their versions.
+- **dirb/dirbuster**:
+    - Enumerate commonly-named directories on a website.
+- **enum4linux**:
+    - Focuses on vulnerabilities specific to Linux systems.
+- **metasploit**:
+    - Primarily for exploitation but includes enumeration capabilities.
+- **Burp Suite**:
+    - Scans websites for subdirectories and intercepts network traffic.
 
 
-here i used 
-enum4linux 10.10.212.180 -a
+### Common Exploitation Tools
 
+- **Metasploit**: A versatile exploitation framework with built-in scripts for a variety of vulnerabilities.
+- **Burp Suite**: Can exploit web application vulnerabilities like SQL Injection and Cross-Site Scripting.
+- **SQLMap**: Automates SQL Injection attacks.
+- **msfvenom**: Used to create custom payloads.
+- **BeEF**: Specialized in browser-based exploitation.
 
-![[Pasted image 20250107192757.png]]
-
-
-## Nmap
-
-to look for **scripts**
-- grep "ftp-anon" /usr/share/nmap/scripts/script.db  
-
-
-good tcp aggressive scan and saving the file on current dir named : nmapthm
- 
-- └─$ sudo nmap -p- -A -T5 -sT 10.10.212.180  -oN nmapthm
-
-also this works fine and simple using syn scan
-
-- nmap -vv  -T5 -oN NmapScan -p- 10.10.147.81
-
-after getting open ports you need to scan specific port like this in order to foxus on it
-
-	sudo nmap -A -T4 -vv -p 8012 -oN NmapPortScan 10.10.147.81
-
-Explanation of Changes:
-
-- Removed `-sT`: It's unnecessary unless a full TCP connect scan is specifically needed.
-- Removed `-sC`: It's included in `-A`.
-- Adjusted `-T5` to `-T4`: `-T4` is fast but more reliable and less likely to cause issues with firewalls.
-
-
-did an nmap scan 
-
-found one open port now focus on it
-
-**import**
-	PORT     STATE SERVICE REASON  VERSION
-	8012/tcp open  unknown syn-ack
-	| fingerprint-strings: 
-	|   DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, Kerberos, LANDesk-RC, LDAPBindReq, LDAPSearchReq, LPDString, NCP, NULL, RPCCheck, RTSPRequest, SIPOptions, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, TerminalServerCookie, X11Probe: 
-	|_    SKIDY'S BACKDOOR. Type .HELP to view commands
-
-
-that scan says that this can be used ass a backdoor .   SKIDY'S BACKDOO.
-
-
-
-## using msfvenom
+## using msfvenom 
 
 We're going to generate a reverse shell payload using msfvenom.This will generate and encode a netcat reverse shell for us. Here's our syntax:  
 
@@ -106,74 +61,8 @@ Great! Now that's running, we need to copy and paste our msfvenom payload into t
 ![[Pasted image 20250107223636.png]]
 
 
-## Hydra
 
-
-**Hydra** is a powerful password-cracking tool that supports **over 50 protocols**, including FTP. It can perform rapid **dictionary attacks** on various services.
-
-**Command Syntax for Hydra:**
-
-```bash
-hydra -t 4 -l [username] -P [path to wordlist] -vV [target IP] ftp
-```
-
-### **Table: Fragile vs. Robust Protocols**
-
-|**Category**|**Protocol**|**Explanation**|
-|---|---|---|
-|**Fragile Protocols**|||
-||**SMTP**|Often rate-limited to prevent abuse; many servers lock accounts after a few failed attempts.|
-||**FTP**|Older implementations are sensitive to high connection rates, leading to crashes or timeouts.|
-||**HTTP/HTTPS (Web Forms)**|Web servers may implement CAPTCHA, rate-limiting, or block IPs after too many failed attempts.|
-||**IMAP/POP3**|Email protocols often have strict security measures and lower tolerance for repeated failures.|
-||**Telnet**|Legacy protocol with limited security; excessive requests may crash the service.|
-||**RDP (Remote Desktop)**|May block IPs or lock accounts quickly after multiple failed logins.|
-||**SNMP**|Not designed for authentication; high parallel connections can lead to service disruption.|
-|**Robust Protocols**|||
-||**SSH**|Designed to handle multiple connections; higher tolerance to brute-force attempts.|
-||**SMB**|Resilient to high connection rates, especially on modern implementations.|
-||**Kerberos**|Built for secure authentication, often used in enterprise networks, withstanding parallel brute-forcing.|
-||**DNS**|Can handle many requests simultaneously, although brute-forcing subdomains may still be detected.|
-||**LDAP**|Generally robust and scalable for high connection attempts, especially on enterprise systems.|
-
----
-
-### **Key Notes:**
-
-- **Fragile Protocols**: These are more likely to crash, lock accounts, or trigger defenses (CAPTCHA, IP bans) during brute-forcing attempts. Use **low thread counts** (e.g., `-t 4` or `-t 8`) for these.
-- **Robust Protocols**: These can handle more concurrent connections and higher thread counts (e.g., `-t 16` or `-t 32`) without significant risk of service disruption.
-
-This distinction isn’t absolute—always monitor the target’s behavior and adjust the thread count as needed.
-
-###### **Breaking Down the Command**:
-
-| **Section**             | **Function**                                                                      |
-| ----------------------- | --------------------------------------------------------------------------------- |
-| `hydra`                 | Executes the Hydra tool                                                           |
-| `-t 4`                  | Specifies **4 parallel connections** for faster cracking                          |
-| `-l [user]`             | Specifies the **username** for the account being targeted (e.g., "dale")          |
-| `-P [path to wordlist]` | Specifies the path to a **wordlist** of potential passwords (e.g., "rockyou.txt") |
-| `-vV`                   | Enables **verbose mode**, showing login attempts and results                      |
-| `[target IP]`           | The **IP address** of the target machine                                          |
-| `ftp`                   | Specifies the **FTP protocol** for Hydra to attack                                |
-
----
-
-### **Key Notes:**
-
-- **Fragile Protocols**: These are more likely to crash, lock accounts, or trigger defenses (CAPTCHA, IP bans) during brute-forcing attempts. Use **low thread counts** (e.g., `-t 4` or `-t 8`) for these.
-- **Robust Protocols**: These can handle more concurrent connections and higher thread counts (e.g., `-t 16` or `-t 32`) without significant risk of service disruption.
-
-###### **Example Command**:
-
-```bash
-hydra -t 4 -l dale -P /usr/share/wordlists/rockyou.txt -vV 10.10.10.6 ftp
-```
-
-This command will attempt to crack the FTP password for the user **dale** on the server at **10.10.10.6**, using the **rockyou.txt** wordlist.
-
-
-## MetaSploit
+## MetaSploit EXPLANATION
 
 Metasploit tip: View missing module options with show missing
 
@@ -460,7 +349,7 @@ Apologies for missing some parts in the previous response. Let me provide a more
 
 
 
-## John the ripper
+## John the ripper EXPLANATION
  
 
 ### 1. Installation
@@ -572,5 +461,170 @@ john --show hashes.txt
 That's a basic overview of how to use John the Ripper. If you have any specific questions or need more advanced usage examples, feel free to ask!
 
 
+## ffuf EXPLANATION
+
+Sure! Let's summarize the basics of using `ffuf` (Fuzz Faster U Fool), a popular web fuzzing tool, and provide some examples to help you get started.
+
+### Summary of Key Options
+
+1. **HTTP Options**:
+   - `-H`: Add custom headers.
+   - `-X`: Specify HTTP method (e.g., GET, POST).
+   - `-u`: Target URL.
+   - `-b`: Add cookies.
+   - `-d`: Specify POST data.
+   - `-r`: Follow redirects.
+   - `-recursion`: Enable recursive fuzzing.
+
+2. **General Options**:
+   - `-t`: Number of concurrent threads.
+   - `-p`: Delay between requests.
+   - `-s`: Silent mode (no additional info).
+   - `-v`: Verbose output.
+
+3. **Matcher Options**:
+   - `-mc`: Match specific HTTP status codes.
+   - `-mr`: Match regex in response.
+   - `-ms`: Match response size.
+
+4. **Filter Options**:
+   - `-fc`: Filter specific HTTP status codes.
+   - `-fr`: Filter regex in response.
+   - `-fs`: Filter response size.
+
+5. **Input Options**:
+   - `-w`: Specify wordlist and keyword (default is `FUZZ`).
+   - `-e`: Add file extensions to fuzz.
+   - `-mode`: Multi-wordlist modes (`clusterbomb`, `pitchfork`).
+
+6. **Output Options**:
+   - `-o`: Save output to a file.
+   - `-of`: Output format (e.g., json, csv).
+
+### Basic Usage
+
+To use `ffuf`, you typically need to specify a target URL (`-u`) and a wordlist (`-w`). The `FUZZ` keyword is used to indicate where the wordlist entries will be injected.
+
+### Examples
+
+1. **Basic Directory Fuzzing**:
+   ```bash
+   ffuf -u http://MACHINE_IP/FUZZ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/big.txt
+   ```
+   This command fuzzes directories on `http://MACHINE_IP` using the `big.txt` wordlist.
+
+2. **Custom Keyword**:
+   ```bash
+   ffuf -u http://MACHINE_IP/NORAJ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/big.txt:NORAJ
+   ```
+   Here, `NORAJ` is used as the keyword instead of `FUZZ`.
+
+3. **Fuzzing with Extensions**:
+   ```bash
+   ffuf -u http://MACHINE_IP/FUZZ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/big.txt -e .php,.html
+   ```
+   This command fuzzes for files with `.php` and `.html` extensions.
+
+4. **Matching Specific Status Codes**:
+   ```bash
+   ffuf -u http://MACHINE_IP/FUZZ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/big.txt -mc 200,301,302
+   ```
+   This command only matches responses with status codes 200, 301, or 302.
+
+5. **Using Multiple Wordlists**:
+   ```bash
+   ffuf -u http://MACHINE_IP/FUZZ1/FUZZ2 -w /path/to/wordlist1.txt:FUZZ1 -w /path/to/wordlist2.txt:FUZZ2 -mode clusterbomb
+   ```
+   This command uses two wordlists with the `clusterbomb` mode to fuzz multiple positions.
+
+These examples should help you get started with `ffuf`. Remember to adjust paths and options based on your specific needs and environment. Happy fuzzing!
 
 
+## **Gobuster EXPLANATION**
+
+Gobuster is a powerful tool for brute-forcing directories, subdomains, and virtual hosts. It offers various modes to suit different enumeration needs. Below is a concise summary of its key features, flags, and usage examples.
+
+### 1. Introduction to Gobuster
+
+Gobuster is used for discovering hidden resources on web servers by brute-forcing directories, subdomains, and virtual hosts. It supports multiple modes, each tailored for specific tasks.
+
+### 2. Dir Mode Summary (Directory Enumeration)
+
+**Essential Flags:**
+- `-u` or `--url`: Specifies the target URL.
+- `-w` or `--wordlist`: Specifies the wordlist to use.
+- `-x` or `--extensions`: Specifies file extensions to try.
+- `-t` or `--threads`: Sets the number of concurrent threads.
+- `--delay`: Sets the delay between requests.
+- `-o` or `--output`: Specifies the output file.
+- `-q` or `--quiet`: Runs in quiet mode, showing only results.
+- `-n` or `--no-status`: Hides status codes in the output.
+- `-s` or `--status-codes`: Specifies positive HTTP status codes to consider.
+- `-b` or `--status-codes-blacklist`: Specifies status codes to ignore.
+
+**Example Commands:**
+- Basic directory enumeration:
+  ```bash
+  gobuster dir -u http://example.com -w wordlist.txt -x php,html -t 10 -o results.txt
+  ```
+- Quiet mode with specific status codes:
+  ```bash
+  gobuster dir -u http://example.com -w wordlist.txt -s 200,301 -q
+  ```
+
+### 3. DNS Mode Summary (Subdomain Enumeration)
+
+**Essential Flags:**
+- `-d` or `--domain`: Specifies the target domain.
+- `-w` or `--wordlist`: Specifies the wordlist for subdomains.
+- `-r` or `--resolver`: Specifies the DNS resolver server.
+- `-o` or `--output`: Specifies the output file.
+- `-q` or `--quiet`: Runs in quiet mode.
+- `--show-cname`: Shows CNAME records.
+- `--show-ips`: Shows IP addresses associated with subdomains.
+
+**Example Commands:**
+- Basic subdomain enumeration:
+  ```bash
+  gobuster dns -d example.com -w subdomains.txt -r 8.8.8.8 -o dns_results.txt
+  ```
+- Show CNAME records:
+  ```bash
+  gobuster dns -d example.com -w subdomains.txt --show-cname
+  ```
+
+### 4. VHost Mode Summary (Virtual Host Enumeration)
+
+**Essential Flags:**
+- `-u` or `--url`: Specifies the target URL.
+- `-w` or `--wordlist`: Specifies the wordlist for virtual hosts.
+- `-t` or `--threads`: Sets the number of concurrent threads.
+- `-o` or `--output`: Specifies the output file.
+- `-q` or `--quiet`: Runs in quiet mode.
+- `-U` or `--username` and `-P` or `--password`: For HTTP authentication.
+- `-H` or `--headers`: Adds custom HTTP headers.
+
+**Example Commands:**
+- Basic virtual host enumeration:
+  ```bash
+  gobuster vhost -u http://example.com -w vhosts.txt -t 5 -o vhost_results.txt
+  ```
+- With custom headers:
+  ```bash
+  gobuster vhost -u http://example.com -w vhosts.txt -H "User-Agent: CustomAgent"
+  ```
+
+### 5. Global Flags
+
+- `--delay`: Delay between requests.
+- `--no-progress`: Disables progress bars.
+- `-v` or `--verbose`: Enables verbose output.
+- `-k` or `--no-tls-validation`: Disables TLS certificate validation.
+
+### 6. Best Practices and Ethical Considerations
+
+- Always obtain permission before scanning any target.
+- Be mindful of rate limits and server load.
+- Use wordlists appropriately and responsibly.
+
+This summary provides a comprehensive overview of Gobuster's capabilities and flags, ensuring effective and ethical usage in web enumeration tasks.

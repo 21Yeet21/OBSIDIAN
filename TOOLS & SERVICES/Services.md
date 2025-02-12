@@ -25,7 +25,9 @@ id_rsa.pub
 
 then we can use and dont forget to do chmod 600 id_rsa
 
+```
 - ssh  -i ./id_rsa username@hostip
+```
 
 to connect
 

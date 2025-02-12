@@ -656,3 +656,232 @@ can use ==cat -n==
 
 5. **How can you find the position of a specific word in a sorted and unique list?**
    - Use `grep -n` on the sorted and unique list: `sort input.txt | uniq | grep -n "word"`
+
+## Summary of `curl` Command
+
+The `curl` command is a versatile tool for transferring data over various protocols, including HTTP, HTTPS, FTP, and more. It offers a wide range of flags to customize data transfer operations. Here are some key points:
+
+- **Basic Usage**: `curl https://google.com/` fetches the content of the specified URL.
+- **Important Flags**:
+  - `-#`: Displays a progress meter.
+  - `-o <file>`: Saves output to a specified file.
+  - `-O`: Saves the file with the server's original name.
+  - `-C -`: Resumes a broken download automatically.
+  - `--limit-rate <rate>`: Limits the download or upload rate.
+  - `-u <user:password>`: Provides user authentication.
+  - `-T <file>`: Uploads a file to a server.
+  - `-x <proxy>`: Specifies a proxy server.
+  - `-I`: Fetches only HTTP headers.
+  - `-A <user-agent>`: Sets the user-agent string.
+  - `-L`: Follows HTTP redirects.
+  - `-b <cookie>`: Specifies cookies for the request.
+  - `-d <data>`: Posts data to the server.
+  - `-X <method>`: Sets the HTTP method (e.g., GET, POST).
+
+### Answers to Questions
+
+1. **Which flag allows you to limit the download/upload rate of a file?**
+   - The flag to limit the download or upload rate is `--limit-rate`.
+
+2. **How will you curl the webpage of https://tryhackme.com/ specifying user-agent as 'juzztesting'?**
+   - The command to fetch the webpage with a specified user-agent is:
+     ```bash
+     curl -A "juzztesting" https://tryhackme.com/
+     ```
+
+3. **Can curl perform upload operations? (Yea/Nah)**
+   - Yes, `curl` can perform upload operations using the `-T` flag.
+   - Answer: Yea.
+
+
+## Task 11: wget
+
+### Introduction
+
+`wget` is a command-line utility used to download files from the web. It supports HTTP, HTTPS, and FTP protocols. This tool is particularly useful for downloading files in the background or resuming interrupted downloads.
+
+### Important Flags
+
+| Flag             | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| `-b`             | Background the downloading process.                                        |
+| `-c`             | Continue a partially downloaded file.                                      |
+| `-t int`         | Specify the number of retries for a URL.                                    |
+| `-O download.txt`| Specify the output name of the downloaded file.                             |
+| `-o file`        | Overwrite the logs into another file.                                       |
+| `-a file`        | Append logs to an existing file without deleting previous contents.          |
+| `-i file`        | Read the list of URLs from a file.                                          |
+| `--user=username`| Provide a login username (use `--ftp-user` or `--http-user` if necessary).   |
+| `--password=password` | Provide a login password (use `--ftp-password` or `--http-password` if necessary). |
+| `--ask-password` | Prompt for a password if login is required.                                 |
+| `--limit-rate=10k` | Limit the download speed (supports k and m notation for kB and mB).       |
+| `-w=<int>`       | Specify the waiting time before retrieval from a URL (in seconds).          |
+| `-T=<int>`       | Timeout the retrieval after a specified amount of time (in seconds).        |
+| `-N`             | Enable timestamping.                                                       |
+| `-U`             | Specify the user-agent while downloading the file.                          |
+
+### Examples
+
+- **Downloading a file with a different name:**
+  ```bash
+  wget -O download.txt http://example.com/file
+  ```
+
+- **Specifying logfile as `log.txt` with timestamping enabled:**
+  ```bash
+  wget -o log.txt -N http://example.com/file
+  ```
+
+### Q&A Section
+
+1. **How will you enable time logging at every new activity that this tool initiates?**
+
+   - Use the `-a` flag to append logs to an existing file.
+   - Use the `-o` flag to overwrite logs into a new file.
+   - Use the `-N` flag to enable timestamping in logs.
+
+2. **What command will you use to download `https://xyz.com/mypackage.zip` using wget, appending logs to an existing file named "package-logs.txt"?**
+
+   ```bash
+   wget -a package-logs.txt https://xyz.com/mypackage.zip
+   ```
+
+3. **Write the command to read URLs from "file.txt" and limit the download speed to 1mbps.**
+
+   ```bash
+   wget -i file.txt --limit-rate=1m
+   ```
+
+
+
+## **xxd** (view last Q)
+
+The `xxd` command is a versatile tool for creating hex dumps of binary data and converting hex dumps back into binary format. It offers several flags to customize the output:
+
+- `-b`: Displays data in binary format.
+- `-c <number>`: Sets the number of bytes per row.
+- `-g <number>`: Sets the number of bytes per group.
+- `-i`: Outputs in C include format.
+- `-l <number>`: Specifies the length of the output in bytes.
+- `-p`: Generates a plain hexdump without addresses or ASCII.
+- `-r`: Reverses a hexdump back to binary.
+- `-s <offset>`: Seeks to a specific offset before dumping.
+- `-u`: Uses uppercase for hex letters.
+
+The `-c` flag takes precedence over the `-g` flag if they conflict.
+
+**Answers to Questions:**
+
+1. **Seek at the 10th byte (in hex) in `file.txt` and display only 50 bytes:**
+
+   ```bash
+   xxd -s 0xA -l 50 file.txt
+   ```
+
+2. **Display n bytes of hexdump in 3 columns with a group of 3 octets per row from `file.txt` (Use flags alphabetically):**
+
+   ```bash
+   xxd -c 9 -g 3 -l n file.txt
+   ```
+
+3. **Which flag has more precedence: `-c` or `-g`?**
+
+   The `-c` flag has more precedence than the `-g` flag.
+
+
+
+==this worked better than only -r==
+
+└─$ xxd -r -p flag_1611749859927.txt 
+flag{wh3sdw0lw1gl9oqasad2fs48as}
+
+
+
+
+## Task 13: Other Modules
+
+### GPG Command
+
+- **Explanation**: GPG (GNU Privacy Guard) is an open-source alternative to PGP (Pretty Good Privacy), using AES encryption by default. Understanding GPG is crucial when dealing with encrypted files.
+- **Resources**: 
+- [gpg - Unix, Linux Command - Tutorialspoint](https://www.tutorialspoint.com/unix_commands/gpg.htm)
+- [GPG Cheat Sheet (hawaii.edu)](http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/)
+
+### Tar Command
+
+- **Explanation**: The `tar` command is used for creating and extracting tar archives, and it can handle various compression formats like gzip and bzip2.
+- **Resources**:
+- [Linux Tar Commands Cheatsheet | Never Ending Security (wordpress.com)](https://neverendingsecurity.wordpress.com/2015/04/13/linux-tar-commands-cheatsheet/)
+- [tar command in Linux with examples - GeeksforGeeks](https://www.geeksforgeeks.org/tar-command-linux-examples/)
+
+### id/pwd/uname Commands
+
+- **Explanation**: These are fundamental commands for retrieving user information (`id`), current directory (`pwd`), and system information (`uname`).
+
+### ps/kill Commands
+
+- **Explanation**: The `ps` command lists running processes, and `kill` is used to terminate processes by their PID.
+- **Alternative**: The `ss` command can be used as an alternative to `netstat` for viewing network connections.
+- List processes, and kill processes with PID. To know more about ps command you can find some help [here](https://man7.org/linux/man-pages/man1/ps.1.html).
+
+### netstat Command
+
+- **Explanation**: `netstat` displays network connections, routing tables, interface statistics, etc. Use `man netstat` for more details.
+- **Alternative**: The `ss` command provides similar functionality to `netstat` but with more features.
+- [Ultimate Netstat Cheat Sheet - Master Netstat in 20 Minutes (rekha.com)](https://www.rekha.com/netstat-cheat-sheet-for-newbies.html)
+- [netstat(8) - Linux man page (die.net)](https://linux.die.net/man/8/netstat)
+- [SS – Socket Statistics Commands Cheatsheet | Never Ending Security (wordpress.com)](https://neverendingsecurity.wordpress.com/2015/04/13/ss-socket-statistics-commands-cheatsheet/)
+### less/more Commands
+
+- **Explanation**: `less` and `more` are pager programs for viewing text files. `less` is more powerful with backward and forward navigation.
+- **Additional Command**: The `most` command improves upon `less` and can be installed with `sudo apt install most`.
+- [The Difference Between more, less And most Commands - OSTechNix](https://ostechnix.com/the-difference-between-more-less-and-most-commands/)
+- [Less and More command (Explained)](https://www.tecmint.com/linux-more-command-and-less-command-examples/#:~:text=Learn%20Linux%20%27less%27%20Command,using%20page%20up%2Fdown%20keys.)
+### diff/comm Commands
+
+- **Explanation**: The `diff` command compares two files byte by byte, while `comm` compares two sorted files line by line.
+- **Resources**:
+  - [Comparing files and directories with the diff and comm Linux commands | Network World](https://www.networkworld.com/article/3279724/comparing-files-and-directories-with-diff-and-comm.html#:~:text=The%20diff%20command%20would%20make,both%20commands%20is%20the%20same.&text=The%20comm%20command%20can%20provide,it%20can%20compare%20two%20files.)
+- [diff command in Linux with examples - GeeksforGeeks](https://www.geeksforgeeks.org/diff-command-linux-examples/)
+- [comm command in Linux with examples - GeeksforGeeks](https://www.geeksforgeeks.org/comm-command-in-linux-with-examples/)
+### base64 Command
+
+- **Explanation**: The `base64` command is used for encoding and decoding data in base64 format.
+
+### tee Command
+
+- **Explanation**: The `tee` command reads from standard input and writes to standard output and files. Use the `-a` flag to append to a file.
+
+### file/stat Commands
+
+- **Explanation**: The `file` command determines file type, and `stat` provides detailed information about a file or filesystem.
+
+### export Command
+
+- **Explanation**: The `export` command sets environment variables for the current shell session.[here](https://www.geeksforgeeks.org/export-command-in-linux-with-examples/).
+
+### reset Command
+
+- **Explanation**: The `reset` command resets the terminal settings to default, useful for fixing a malfunctioning terminal.
+
+### systemctl/service Commands
+
+- **Explanation**: `systemctl` manages systemd services, while `service` manages sysvinit services. Use `systemctl` for systemd-based systems.
+- **Caution**: Be cautious with `systemctl` as it can affect system-wide settings.
+
+-  [Difference between Systemctl and service command - Stack Overflow](https://stackoverflow.com/questions/43537851/difference-between-systemctl-and-service-command#:~:text=service%20operates%20on%20the%20files,file%20in%20%2Fetc%2Finit.)
+- [Systemctl Cheatsheet (github.com)](https://gist.github.com/adriacidre/307d2f9f5179fc748f22edac5af3d218) (A small cheatsheet you wanna read before working with systemctl).
+
+### Q&A Section
+
+1. **Is it safe to run `systemctl` commands on your main Linux system without proper guidance?**
+   - Wrong
+
+2. **How do you import a given PGP private key (e.g., `key.gpg`)?**
+   - Use `gpg --import key.gpg`
+
+3. **What command can be used to list all port activity if `netstat` is not available?**
+   - `ss`
+
+4. **What command can be used to fix a broken or irregular terminal shell?**
+   - `reset`
