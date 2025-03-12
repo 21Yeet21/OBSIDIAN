@@ -16,7 +16,19 @@ If you haven't already, set up Git on your local machine:
   ```bash
   git config --global user.name "Your Name"
   git config --global user.email "your_email@example.com"
+  ssh-keygen -t rsa -b 4096 -C "ayoub.touihri11@gmail.com"
+
   ```
+
+- When prompted, press Enter to save the key in the default location (`~/.ssh/id_rsa`).
+    
+- To add the SSH key to the SSH agent, run the following:- When prompted, press Enter to save the key in the default location (`~/.ssh/id_rsa`).
+    
+- To add the SSH key to the SSH agent, run the following:
+- 
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+
 
 ### 3. Initialize a Local Repository and Add Files
 - Navigate to the folder containing your wallpapers in your terminal.
