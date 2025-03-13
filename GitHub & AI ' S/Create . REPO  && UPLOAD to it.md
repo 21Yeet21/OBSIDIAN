@@ -30,6 +30,69 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 
 
+## Accessing with token for the first time 
+
+It looks like you're trying to use HTTPS to push to your GitHub repository, and Git is asking for your username and password. GitHub has recently changed how it handles authentication, and now **Personal Access Tokens (PATs)** are required instead of your regular password.
+
+Here’s how you can fix the issue:
+
+### Step 1: Create a Personal Access Token (PAT)
+
+GitHub no longer allows using your GitHub password for authentication when pushing via HTTPS. Instead, you’ll need to use a **Personal Access Token (PAT)**.
+
+1. Go to [GitHub's Token Settings page](https://github.com/settings/tokens).
+2. Click **Generate new token**.
+3. Give your token a name (e.g., "GitHub push token").
+4. Select the appropriate scopes:
+    - For pushing to a repository, you'll need `repo` scope. If you're just interacting with public repos, you may need only `public_repo`.
+    - Click **Generate token**.
+5. Copy the generated token to your clipboard. **Note: Once you leave this page, you won’t be able to see the token again.**
+
+### Step 2: Use the Personal Access Token (PAT) when pushing
+
+Now, when you push to GitHub, instead of entering your password, you'll use the **Personal Access Token (PAT)**.
+
+1. In the terminal, when you're prompted for your GitHub **username**, enter your GitHub username.
+2. When prompted for your **password**, paste the **Personal Access Token** you just generated (not your GitHub password).
+
+### Step 3: Cache your credentials (optional)
+
+To avoid being asked for your username and PAT every time, you can enable Git's credential caching. Here’s how:
+
+1. Run the following command to cache your credentials:
+    
+    ```bash
+    git config --global credential.helper cache
+    ```
+    
+    This will store your credentials in memory for 15 minutes by default, so you won’t have to re-enter them for each push.
+    
+2. Alternatively, to store your credentials permanently, use the following:
+    
+    ```bash
+    git config --global credential.helper store
+    ```
+    
+    With this, Git will store your credentials in a plain text file (`~/.git-credentials`), so it won't ask you for them again.
+    
+
+### Step 4: Push Again
+
+Now, try pushing again with:
+
+```bash
+git push origin main
+```
+
+When prompted for a password, paste your **Personal Access Token** instead.
+
+---
+
+Let me know if you encounter any issues while trying this!
+
+
+## Else
+
 ### 3. Initialize a Local Repository and Add Files
 - Navigate to the folder containing your wallpapers in your terminal.
   ```bash

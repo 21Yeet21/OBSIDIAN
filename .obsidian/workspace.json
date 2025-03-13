@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GitHub & AI ' S/Create . REPO  && UPLOAD to it.md",
+                "file": "Studying Cyber/Knowledge/TryHackMe/Scripting/Bash Scripting.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Create . REPO  && UPLOAD to it"
+              "title": "Bash Scripting"
             }
           }
         ]
@@ -86,7 +86,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 250.51103591918945
+    "width": 200
   },
   "right": {
     "id": "4a59ab1bdb697c0a",
@@ -173,6 +173,9 @@
   },
   "active": "a179ade39d43192a",
   "lastOpenFiles": [
+    "GitHub & AI ' S/Create . REPO  && UPLOAD to it.md",
+    "Studying Cyber/Knowledge/TryHackMe/Scripting/Bash Scripting.md",
+    "Studying Cyber/Knowledge/TryHackMe/Scripting",
     "GitHub & AI ' S/Update Repo.md",
     "Studying Cyber/Knowledge/TryHackMe/Basics/Command injection.md",
     "Studying Cyber/Knowledge/TryHackMe/Recon/IMINT.md",
@@ -198,8 +201,6 @@
     "Studying Cyber/Knowledge/TryHackMe/Basics/DNS in Detail.md",
     "Studying Cyber/Knowledge/TryHackMe/WIndows",
     "Studying Cyber/Knowledge/TryHackMe/Recon/Introductory Researching (search).md",
-    "Studying Cyber/Knowledge/TryHackMe/Fundamentals/Common Attacks ==Boxes Included==.md",
-    "Studying Cyber/Untitled.md",
     "Studying Cyber/Knowledge/TryHackMe/Recon",
     "Studying Cyber/Knowledge/Recon",
     "Pics/Pasted image 20250120232957.png",
@@ -218,7 +219,6 @@
     "Knowldge",
     "pics",
     "Untitled 1",
-    "TOOLS & SERVICES",
     "Untitled.canvas"
   ]
 }
