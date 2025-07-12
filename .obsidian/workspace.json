@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Studying Cyber/Knowledge/TryHackMe/Scripting/Bash Scripting.md",
+                "file": "TOOLS & SERVICES/ZAP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Bash Scripting"
+              "title": "ZAP"
             }
           }
         ]
@@ -33,7 +33,7 @@
       {
         "id": "b0ff3705076f532f",
         "type": "tabs",
-        "dimension": 78.04610318331504,
+        "dimension": 85.17420311341735,
         "children": [
           {
             "id": "5034fa7aef7a0285",
@@ -53,7 +53,7 @@
       {
         "id": "e44ddf528db5a21e",
         "type": "tabs",
-        "dimension": 21.953896816684964,
+        "dimension": 14.825796886582655,
         "children": [
           {
             "id": "ff076aabb6371d78",
@@ -61,7 +61,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Active",
+                "query": "vpn",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -171,13 +171,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5034fa7aef7a0285",
+  "active": "a179ade39d43192a",
   "lastOpenFiles": [
+    "Links/Basics & Fundamentals.md",
+    "Links/Ctfs.md",
+    "Links/TryHackMe.md",
+    "Knowldge/Why VPN when using THM.md",
+    "Studying Cyber/New Finds.md",
+    "key seaarch.md",
+    "TOOLS & SERVICES/ZAP.md",
+    "TOOLS & SERVICES/TOOLS.md",
+    "Studying Cyber/Knowledge/TryHackMe/Scripting/Bash Scripting.md",
     "Roadmap/steps.md",
     "Roadmap",
     "OBSIDIAN",
     "GitHub & AI ' S/Create . REPO  && UPLOAD to it.md",
-    "Studying Cyber/Knowledge/TryHackMe/Scripting/Bash Scripting.md",
     "Studying Cyber/Knowledge/TryHackMe/Scripting",
     "GitHub & AI ' S/Update Repo.md",
     "Studying Cyber/Knowledge/TryHackMe/Basics/Command injection.md",
@@ -194,14 +202,6 @@
     "Studying Cyber/Knowledge/TryHackMe/Pentesting/Pentesting Fundamentals.md",
     "Studying Cyber/Knowledge/TryHackMe/Fundamentals/Hacker Methodology.md",
     "Studying Cyber/Knowledge/TryHackMe/Fundamentals/Security Principles.md",
-    "Studying Cyber/Knowledge/TryHackMe/Basics/Regular Expressions (Regex).md",
-    "Studying Cyber/Knowledge/TryHackMe/Fundamentals/Putting it All together.md",
-    "Studying Cyber/Knowledge/TryHackMe/Basics/Network Services IMPOR.md",
-    "Studying Cyber/Knowledge/TryHackMe/Basics/Network Services 2.md",
-    "Studying Cyber/Knowledge/TryHackMe/Basics/Linux Modules.md",
-    "Studying Cyber/Knowledge/TryHackMe/Basics/How Websites Work.md",
-    "Studying Cyber/Knowledge/TryHackMe/Fundamentals/Governance & Regulation ==Boxes Included==.md",
-    "Studying Cyber/Knowledge/TryHackMe/Basics/DNS in Detail.md",
     "Studying Cyber/Knowledge/TryHackMe/WIndows",
     "Studying Cyber/Knowledge/TryHackMe/Recon",
     "Studying Cyber/Knowledge/Recon",
